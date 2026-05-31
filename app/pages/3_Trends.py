@@ -39,20 +39,30 @@ else:
 
     with col1:
         st.subheader("전기 사용량 & 요금")
-        fig2 = px.bar(
-            df,
-            x="date",
-            y=["electricity_kwh", "electricity_amount"],
-            labels={"value": "값", "variable": "항목"}
-        )
-        st.plotly_chart(fig2, use_container_width=True)
+        elec_df = df[["date", "electricity_kwh", "electricity_amount"]].dropna()
+        if not elec_df.empty:
+            fig2 = px.bar(
+                elec_df,
+                x="date",
+                y=["electricity_kwh", "electricity_amount"],
+                barmode="group",
+                labels={"value": "값", "variable": "항목", "date": "월"}
+            )
+            st.plotly_chart(fig2, use_container_width=True)
+        else:
+            st.info("전기 사용량 데이터가 없습니다.")
 
     with col2:
         st.subheader("수도 사용량 & 요금")
-        fig3 = px.bar(
-            df,
-            x="date",
-            y=["water_cbm", "water_amount"],
-            labels={"value": "값", "variable": "항목"}
-        )
-        st.plotly_chart(fig3, use_container_width=True)
+        water_df = df[["date", "water_cbm", "water_amount"]].dropna()
+        if not water_df.empty:
+            fig3 = px.bar(
+                water_df,
+                x="date",
+                y=["water_cbm", "water_amount"],
+                barmode="group",
+                labels={"value": "값", "variable": "항목", "date": "월"}
+            )
+            st.plotly_chart(fig3, use_container_width=True)
+        else:
+            st.info("수도 사용량 데이터가 없습니다.")
