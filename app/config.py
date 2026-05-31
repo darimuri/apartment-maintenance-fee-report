@@ -8,7 +8,13 @@ BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
-DB_PATH = str(DATA_DIR / "management_fees.db")
+# Test mode: set TEST_DB_PATH env var to use separate test database
+TEST_DB_PATH = os.getenv("TEST_DB_PATH", "")
+if TEST_DB_PATH:
+    DB_PATH = TEST_DB_PATH
+else:
+    DB_PATH = str(DATA_DIR / "management_fees.db")
+
 UPLOAD_DIR = DATA_DIR / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
