@@ -1,0 +1,8 @@
+.env
+.git
+.gitignore
+README.md
+research-data/
+docs/
+.claude/
+*.md
