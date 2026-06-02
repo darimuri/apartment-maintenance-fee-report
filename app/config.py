@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).parent.parent
+BASE_DIR.mkdir(exist_ok=True)
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
@@ -23,7 +24,7 @@ OPENROUTER_MODEL = "qwen/qwen3-vl-32b-instruct"
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 MINIMAX_API_KEY = os.getenv("OPENAI_API_KEY", "")
-MINIMAX_API_URL = os.getenv("OPENAI_BASE_URL", "https://api.minimax.io/v1")
+MINIMAX_API_URL = os.getenv("OPENAI_BASE_URL", "https://api.minimax.io/v1") + "/chat/completions"
 MINIMAX_MODEL = os.getenv("OPENAI_MODEL", "MiniMax-M2.7")
 
 OCR_PROMPT = "이 이미지에서 텍스트를 모두 추출해주세요."

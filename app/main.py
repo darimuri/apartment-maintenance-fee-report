@@ -1,5 +1,14 @@
+import logging
 import streamlit as st
+
 from app.database import init_db
+
+# Configure logging format
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
 
 st.set_page_config(
     page_title="아파트 관리비 분석",
